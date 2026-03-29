@@ -1,0 +1,128 @@
+
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>学生错题本</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-title">我的错题本</div>
+        </div>
+        <div class="topbar-actions">
+          <div class="search-box">
+            <input type="text" placeholder="搜索题目..." class="search-input">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+        </div>
+      </header>
+
+      <!-- 横向筛选栏 -->
+      <div class="filter-bar">
+        <div class="filter-left">
+          <div class="filter-item">
+            <button class="filter-btn" id="statusFilterBtn">快速筛选</button>
+          </div>
+          <div class="filter-item">
+            <button class="filter-btn" id="subjectFilterBtn">全部科目</button>
+          </div>
+          <div class="filter-item">
+            <button class="filter-btn" id="yearFilterBtn">年份筛选</button>
+          </div>
+        </div>
+        <div class="filter-right">
+          <button class="export-btn" id="btnExport" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            导出
+          </button>
+        </div>
+      </div>
+
+      <div class="body">
+        <aside class="sidebar">
+          <div class="sidebar-section">
+            <div class="sidebar-title">错题列表</div>
+            <div class="chips" id="statusChips"></div>
+          </div>
+          <div class="wrong-question-list" id="wrongQuestionListWrap">
+            <!-- 错题列表将通过JavaScript动态生成 -->
+          </div>
+        </aside>
+
+        <main class="main">
+          <!-- Segmented Control 流程入口 -->
+          <div class="segmented-control-bar">
+            <div class="segmented" id="panelSegmented">
+              <button class="seg-btn" data-panel="review" type="button">复习</button>
+              <button class="seg-btn" data-panel="practice" type="button">再练</button>
+            </div>
+          </div>
+          <div id="mainRight"></div>
+        </main>
+      </div>
+    </div>
+
+    <!-- 筛选弹窗 -->
+    <div class="modal" id="filterModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>筛选条件</h3>
+          <button class="close-btn" id="closeFilterModal" type="button">×</button>
+        </div>
+        <div class="modal-body">
+      <div class="filter-section">
+        <h4>状态筛选</h4>
+        <div class="chips" id="modalStatusChips"></div>
+      </div>
+      <div class="filter-section">
+        <h4>科目筛选</h4>
+        <div class="chips" id="modalSubjectChips"></div>
+      </div>
+      <div class="filter-section">
+        <h4>年份筛选</h4>
+        <div class="chips" id="modalYearChips"></div>
+      </div>
+    </div>
+        <div class="modal-footer">
+              <button class="btn" id="btnClearFilter" type="button">清空筛选</button>
+              <button class="btn primary" id="btnApplyFilter" type="button">确认</button>
+            </div>
+      </div>
+    </div>
+
+    <!-- 导出预览弹窗 -->
+    <div class="modal" id="exportModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>导出错题</h3>
+          <button class="close-btn" id="closeExportModal" type="button">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="export-section">
+            <h4>选择错题</h4>
+            <div class="export-list" id="exportList"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+              <button class="btn" id="btnCancelExport" type="button">取消</button>
+              <button class="btn primary" id="btnConfirmExport" type="button">导出预览</button>
+            </div>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
+
